@@ -9,19 +9,38 @@ Write a C program to convert a 23.65 into 25 using pointer
 4.	Print the modified value.
 
 ## PROGRAM:
+```
+#include <stdio.h>
+#include <math.h>
+
+void roundUpToNextMultipleOf5(double *pVal, int *pResult) {
+    if (pVal == NULL || pResult == NULL) {
+        return;
+    }
+    double val = *pVal;
+    double multiple = 5.0;
+    double rounded = ceil(val / multiple) * multiple;
+    *pResult = (int) rounded;
+}
+
+int main(void) {
+    double x = 23.65;
+    printf("Original value: %.2f\n", x);
+
+    int result;
+    roundUpToNextMultipleOf5(&x, &result);  // pass pointer of x and pointer of result
+
+    printf("Converted value: %d\n", result);
+    return 0;
+}
+```
 
 ## OUTPUT:
- 	
+```
 
-
-
-
-
-
-
-
-
-
+Original value: 23.65
+Converted value: 25
+```
 
 ## RESULT:
 Thus the program to convert a 23.65 into 25 using pointer has been executed successfully.
@@ -45,15 +64,34 @@ Write a C program to calculate the Product of first 12 natural numbers using Rec
 6.	Print the result, indicating it is the product of the first 12 natural numbers.
 
 ## PROGRAM:
+```
+#include <stdio.h>
+
+// Recursive function to compute product of first n natural numbers
+long long productOfFirstN(int n) {
+    if (n == 1) {           // base case: product of first 1 natural number is 1
+        return 1;
+    } else {
+        return n * productOfFirstN(n - 1);
+    }
+}
+
+int main(void) {
+    int n = 12;
+    long long result = productOfFirstN(n);
+    printf("Product of first %d natural numbers is: %lld\n", n, result);
+    return 0;
+}
+```
 ## OUTPUT:
-         		
+    ``
+    Product of first 12 natural numbers is: 479001600
+``
 ## RESULT:
 
 Thus the program has been executed successfully.
  
  
-
-
 # EX-23-ARRAYS AND ITS OPERATIONS
 
 ## AIM:
@@ -68,14 +106,42 @@ Write C Program to find Sum of each row of a Matrix
 4.	Print the sum for each row.
 
 ## PROGRAM:
+```
+#include <stdio.h>
 
+int main() {
+    int rows, cols;
+    
+    
+    scanf("%d %d", &rows, &cols);
+    
+    int matrix[rows][cols];
+    
+    
+    for (int i = 0; i < rows; i++) {
+        for (int j = 0; j < cols; j++) {
+            scanf("%d", &matrix[i][j]);
+        }
+    }
+    
+    // Sum of each row
+    for (int i = 0; i < rows; i++) {
+        int rowSum = 0;
+        for (int j = 0; j < cols; j++) {
+            rowSum += matrix[i][j];
+        }
+        printf("The Sum of Elements of a Row in a Matrix:  %d\n", rowSum);
+    }
+    
+ return 0;
+}
 
+````
 
 ## OUTPUT
 
+![WhatsApp Image 2025-10-19 at 22 36 23_2cec1b8f](https://github.com/user-attachments/assets/370ad2d2-c7d4-4334-9f81-9507e0855cbd)
 
- 
- 
 
  ## RESULT
  
@@ -97,10 +163,55 @@ Write C program for the below pyramid string pattern. Enter a string: PROGRAM En
 
 ## PROGRAM:
 
+```
+#include <stdio.h>
+#include <string.h>
+
+int main() {
+    char str[100];
+    int rows;
+    
+    scanf("%s", str);
+    
+    scanf("%d", &rows);
+
+    int len = strlen(str);
+    int idx = 0;
+
+    for (int i = 1; i <= rows + 1; i++) {
+        // print 2 extra spaces before each line
+        printf("  ");  
+
+        // print the pyramid’s leading spaces
+        for (int s = 0; s < (rows + 1 - i); s++) {
+            printf(" ");
+        }
+        // print i characters spaced by a space
+        for (int j = 0; j < i; j++) {
+            printf("%c", str[idx]);
+            idx++;
+            if (idx >= len) {
+                idx = 0;
+            }
+            if (j < i - 1) {
+                printf(" ");
+            }
+        }
+        printf("\n");
+    }
+
+    return 0;
+}
+
+```
 
  ## OUTPUT
 
- 
+
+ ![WhatsApp Image 2025-10-19 at 22 40 06_4f35c8c4](https://github.com/user-attachments/assets/f2572a39-882b-4eff-9265-a811b8859f0a)
+
+![WhatsApp Image 2025-10-19 at 22 40 25_623f3cdf](https://github.com/user-attachments/assets/a843a569-8ed7-4359-9d2d-bd62f2439e15)
+
 
 ## RESULT
 
@@ -109,8 +220,6 @@ Thus the C program to String process executed successfully
 
  
 .
-
-
 
 # EX -25 –DISPLAYING ARRAYS USING POINTERS
 ## AIM
@@ -132,10 +241,32 @@ Step 5: Loop from i = 0 to i < n:
 Step 6: End the program.
 
 ## PROGRAM
+```
+#include <stdio.h>
 
+int main(void) {
+    int arr[6];
+    int *p = arr;     // pointer to the first element of the array
+    int i;
+
+    printf("Enter 6 integer elements:\n");
+    for (i = 0; i < 6; i++) {
+        scanf("%d", p + i);  // equivalent to &arr[i]
+    }
+
+    printf("You entered:\n");
+    for (i = 0; i < 6; i++) {
+        printf("%d ", *(p + i));  // dereference the pointer arithmetic
+    }
+    printf("\n");
+
+    return 0;
+}
+```
 ## OUTPUT
 
- 
+ ![WhatsApp Image 2025-10-19 at 22 46 26_a11e51a9](https://github.com/user-attachments/assets/e5822a22-9ce1-4e9e-b753-58b8f9f31841)
+
 
 ## RESULT
 
